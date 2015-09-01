@@ -1,0 +1,43 @@
+{
+  "name": "slush-hence",
+  "description": "",
+  "version": "0.2.7",
+  "homepage": "https://github.com/hence-io/slush-hence",
+  "author": "Sean 'Blitz' Homer <sean.homer@therefore.ca>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Sean/slush-slush-gen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sean/slush-slush-gen/issues"
+  },
+  "main": "slushfile.js",
+  "engines": {
+    "node": ">= 0.10.26",
+    "npm": ">=1.4.3"
+  },
+  "scripts": {
+    "test": "echo \"No tests\"",
+    "preinstall": "npm i -g slush bower"
+  },
+  "dependencies": {
+    "hence-inquisitor": "hence-io/hence-inquisitor",
+    "gulp": "^3.6.2",
+    "gulp-conflict": "hence-io/gulp-conflict",
+    "gulp-git": "^1.2.4",
+    "gulp-if": "^1.2.5",
+    "gulp-install": "^0.1.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-template": "^0.1.1",
+    "gulp-util": "^3.0.6",
+    "hence-util": "hence-io/hence-util",
+    "iniparser": "^1.0.5",
+    "lodash": "^3.10.0",
+    "request": "^2.58.0",
+    "slush": ">=1.0.0",
+    "string": "^3.3.0"
+  },
+  "keywords": [
+    "slushgenerator"
+  ]
+}
