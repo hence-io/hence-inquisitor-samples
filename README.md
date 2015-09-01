@@ -34,7 +34,8 @@ Execute sample with:
 ### 3. ```generators/3-advanced```
 
 The third example is a more advanced real world use of Inquisitor, using a wide variety of applications to achieve a
-desired result.
+desired result. This sample is the component generator from the [Hence Component Stack](https://github.com/hence-io/slush-hence)
+used to generate ES6 Polymer enabled web components with ease.
 
 Execute sample with:
 ```gulp advanced```
