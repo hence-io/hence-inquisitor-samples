@@ -1,24 +1,16 @@
 {
-  "name": "slush-hence",
+  "name": "hence-inquisitor-samples",
   "description": "",
-  "version": "0.2.7",
-  "homepage": "https://github.com/hence-io/slush-hence",
+  "version": "0.1.0",
+  "homepage": "https://github.com/hence-io/hence-inquisitor-samples",
   "author": "Sean 'Blitz' Homer <sean.homer@therefore.ca>",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Sean/slush-slush-gen.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Sean/slush-slush-gen/issues"
-  },
-  "main": "slushfile.js",
+  "main": "index.js",
   "engines": {
     "node": ">= 0.10.26",
     "npm": ">=1.4.3"
   },
   "scripts": {
-    "test": "echo \"No tests\"",
-    "preinstall": "npm i -g slush bower"
+    "test": "echo \"No tests\""
   },
   "dependencies": {
     "hence-inquisitor": "hence-io/hence-inquisitor",
@@ -34,10 +26,6 @@
     "iniparser": "^1.0.5",
     "lodash": "^3.10.0",
     "request": "^2.58.0",
-    "slush": ">=1.0.0",
     "string": "^3.3.0"
-  },
-  "keywords": [
-    "slushgenerator"
-  ]
+  }
 }

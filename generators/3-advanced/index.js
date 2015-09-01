@@ -1,60 +1,74 @@
-// Essential Supporting Libraries/Utils
-var _ = require('lodash'); // The epic JS multi-tool!
-var path = require('path'); // For safe path joining
-var inquisitor = require('hence-inquisitor'); // The star of the show!
-var hence = require('hence-util'); // Supporting text tools
+// Plugins
+var _ = require('lodash');
 
-// Paths
-var cwd = process.cwd(); // The CWD of where the CLI is executed from, to reference where we'd like to output things
-var tplDir = __dirname + '/template/'; // The local reference to this scaffold template folder, to be used in installation
+// hence-inquisitors
+var inquisitor = require('hence-inquisitor');
+var hence = require('hence-util');
 
-// Start building out the scaffold installation
+
+var tplDir = __dirname + '/template/';
+
+var steps = [
+  require('./scaffold/step-install-options'),
+  require('./scaffold/step-component'),
+  require('./scaffold/step-author'),
+  require('./scaffold/step-project'),
+  require('./scaffold/step-complete')
+];
+var installOptions = steps[0].options.installOptions;
+
 var scaffold = inquisitor.Scaffold({
-  // Define the steps that your scaffold will use, in any order you desire. Each steps will receive answers from the
-  // former step, so it's best to place over arching steps that need previous answers to be further down the pipe.
-  steps: [
-    require('./scaffold/step-install-options')
-  ],
-  // Specific the default set of answers options that will feed details into all of your steps, common config like paths.
+  // The step order isn't locked down, it can be swapped out as long as higher steps don't require answers from lower
+  // steps, you're aok!
+  steps: steps,
   defaults: {
+    dependencies: require('./dependencies.json'),
     dirs: {
       template: {
-        root: tplDir,
-        common: path.join(tplDir, 'common'),
-        optional: path.join(tplDir, 'optional')
+        common: tplDir + 'common/',
+        type: tplDir + 'type/',
+        fonts: tplDir + 'fonts/',
+        optional: tplDir + 'optional/'
       },
-      dest: path.join(cwd, 'generators')
-    }
+      dest: './'
+    },
+    installDependencies: !inquisitor.env['ignore-deps'],
+    gitInit: !!inquisitor.env.git,
+    compPrefix: inquisitor.env.pre || 'hence'
   },
-  // Control what messages appear during your installation. The scaffold manages the initial introduction, as well
-  // as completion message once everything is done. Should your process be aborted or encounter an error, you can
-  // manage what details go along with this as well.
   content: {
     intro: hence.ascii.hence(
-      inquisitor.colors.bold(" Welcome to the Hence.io Scaffolding Sub-generator. ") + "This installer is designed to" +
-      " generate a skeleton scaffold installer for you to build sub-generators from."
+      inquisitor.colors.bold(" Welcome to the Hence.io Scaffolding Tool. ") + "Your component generation is about to be" +
+      " being. You have to option to\n create a component with a quick install, or dive into a detailed installation" +
+      " should you desire."
     ),
     done: inquisitor.colors.bold(" Thank you for using the Hence.io Scaffolding Tool!\n") +
     " Review the possible gulp commands available to you on the project documentation, or type '" +
     inquisitor.colors.bold('gulp help') + "' at any time."
   },
-  // A helper function to configure CLI arguments passed into this installer, allowing you to process each argument
-  // and determine what unique options it will leverage during an multi-installation
+  inquirer: {
+    detailedInstallOnly: function () {
+      return scaffold.answers.installOption === installOptions.detailed;
+    }
+  },
   cliArg: function (arg) {
+    var splitName = arg.split(':');
+
     return {
       content: {
-        intro: inquisitor.ascii.heading('Scaffold Installation') +
-        inquisitor.colors.bold(' Name: ') + arg,
+        intro: inquisitor.ascii.heading('Component Installation') +
+        inquisitor.colors.bold(' Name: ') + this.defaults.compPrefix + '-' + splitName[0] +
+        inquisitor.colors.bold('\n Type: ') + splitName[1],
         done: inquisitor.ascii.spacer()
       },
       defaults: {
-        scaffoldName: arg
+        compName: splitName[0],
+        compType: splitName[1]
       }
     };
   },
-  // Provide a reference to the essential install function, which controls what you do with all of the answers once
-  // the steps are complete.
-  install: require('./scaffold/install')
+  install: require('./scaffold/install'),
+  postInstall: require('./scaffold/postInstall')
 });
 
 module.exports = scaffold;

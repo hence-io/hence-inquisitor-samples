@@ -1,0 +1,20 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/[fill in your api component here].html">
+<link rel="import" href="/bower_components/[fill in your ui component here].html">
+
+<dom-module id="<%= compName %>">
+  <template>
+    <template is="dom-if" if="{{query}}">
+      <api-comp action="get" query="{{query}}" results="{{state}}"></api-comp>
+      <template is="dom-if" if="{{state}}">
+        <ui-comp props="{{renderState()}}"></ui-comp>
+      </template>
+      <template is="dom-if" if="{{!state}}">
+        There is no entry to display, sorry...
+      </template>
+    </template>
+    <template is="dom-if" if="{{!query}}">
+      Loading entry...
+    </template>
+  </template>
+</dom-module>

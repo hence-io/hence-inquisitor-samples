@@ -21,11 +21,20 @@ This repository features a collection of examples of Inquisitor in use, to showc
 
 The first example covers a basic use of Inquisitor, setting up a simple installer.
 
+Execute sample with:
+```gulp basic```
+
 ### 2. ```generators/2-multi-install```
 
 The second example shows in more detail how to make use of the varied applications of the multi-installation flow.
+
+Execute sample with:
+```gulp multi-install```
 
 ### 3. ```generators/3-advanced```
 
 The third example is a more advanced real world use of Inquisitor, using a wide variety of applications to achieve a
 desired result.
+
+Execute sample with:
+```gulp advanced```

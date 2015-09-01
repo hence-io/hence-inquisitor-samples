@@ -12,7 +12,7 @@ var gulp = require('gulp');
 var generators = require('./generators');
 
 // Run the component generator by default
-gulp.task('default', generators.component);
-gulp.task('component', generators.component);
-
-gulp.task('scaffold', generators.scaffold);
+gulp.task('default', generators.basic);
+gulp.task('basic', generators.component);
+gulp.task('multi-install', generators.multiInstall);
+gulp.task('advanced', generators.advanced);

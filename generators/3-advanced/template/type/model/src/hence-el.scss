@@ -1,0 +1,25 @@
+/***************************
+** Essentials
+****************************/
+// Core
+//@import 'compass';
+// Grid/Responsive
+//@import 'susy';
+//@import 'breakpoint';
+// Spacing
+//@import 'modular-scale';
+
+//
+/***************************
+** Optional
+****************************/
+// Font awesome
+//$fa-font-path : '/bower_components/font-awesome/fonts/' !default;
+//@import 'font-awesome';
+//
+/***************************
+** Component Base Styles
+****************************/
+
+//:host { // Style for the component wrapper built by shadow dom
+//}

@@ -38,20 +38,6 @@ var scaffold = inquisitor.Scaffold({
     " Review the possible gulp commands available to you on the project documentation, or type '" +
     inquisitor.colors.bold('gulp help') + "' at any time."
   },
-  // A helper function to configure CLI arguments passed into this installer, allowing you to process each argument
-  // and determine what unique options it will leverage during an multi-installation
-  cliArg: function (arg) {
-    return {
-      content: {
-        intro: inquisitor.ascii.heading('Scaffold Installation') +
-        inquisitor.colors.bold(' Name: ') + arg,
-        done: inquisitor.ascii.spacer()
-      },
-      defaults: {
-        scaffoldName: arg
-      }
-    };
-  },
   // Provide a reference to the essential install function, which controls what you do with all of the answers once
   // the steps are complete.
   install: require('./scaffold/install')

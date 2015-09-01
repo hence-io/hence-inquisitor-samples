@@ -1,0 +1,10 @@
+dist/
+.tpm/
+.idea/
+docs/
+gulp/
+src/lib/
+.esdoc.json
+gulpfile.js
+karma.conf.js
+package.json

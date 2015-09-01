@@ -24,7 +24,11 @@ var scaffold = inquisitor.Scaffold({
         optional: path.join(tplDir, 'optional')
       },
       dest: path.join(cwd, 'generators')
-    }
+    },
+    // inquisitor extends from gulp-util, affording you any of the controls you would use with it, such as accessing
+    // the CLI for any flags which were passed on through. Lets set whether or not we should install git based on
+    // the whether '--git' is set on the CLI.
+    gitInit: !!inquisitor.env.git
   },
   // Control what messages appear during your installation. The scaffold manages the initial introduction, as well
   // as completion message once everything is done. Should your process be aborted or encounter an error, you can
@@ -54,7 +58,31 @@ var scaffold = inquisitor.Scaffold({
   },
   // Provide a reference to the essential install function, which controls what you do with all of the answers once
   // the steps are complete.
-  install: require('./scaffold/install')
+  install: require('./scaffold/install'),
+  // When the install's stream has finished processing, the postInstall will then fire, allowing us to perform an
+  // final actions or cleanup before we finish things up on the scaffold.
+  postInstall: function (answers, finalize) {
+    var scaffold = this;
+    // Pull the targeted deployment folder for out installation.
+    var destDir = answers.dirs.dest;
+
+    // If the CLI flag was set for git, lets try to initialize a git repo in the destination folder
+    if (answers.gitInit) {
+      console.log('>> Initializing Git Repository:', destDir);
+
+      // Attempt the git init. This is a synchronous activity, so there's no timeout of break in control flow.
+      git.init({cwd: destDir}, function (err) {
+        // If we encountered an error, call finalize with some details for the users to know what went wrong. End
+        // the installation here.
+        if (err) {
+          return finalize(['error', 'postInstall', 'git init failure', err]);
+        }
+      });
+    }
+
+    // Now we're all finished without issue, let scaffold finish things off.
+    finalize();
+  }
 });
 
 module.exports = scaffold;

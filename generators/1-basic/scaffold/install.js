@@ -11,7 +11,6 @@ var install = function (answers, finished) {
   var scaffold = this;
   // Pull the list of files we want to target from the answers.
   var files = answers.files;
-
   // Pull the targeted deployment folder for out installation.
   var destDir = answers.dirs.dest;
 

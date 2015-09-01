@@ -1,0 +1,16 @@
+# OSx
+.DS_Store
+
+# Dev/Build folders
+.tmp/
+docs/
+node_modules/
+bower_components/
+.sass-cache/
+npm-debug.log
+
+# IDE/text editors
+*.sublime-*
+.project
+.idea/
+nbproject/

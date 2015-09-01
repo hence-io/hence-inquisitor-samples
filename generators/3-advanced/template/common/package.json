@@ -1,0 +1,24 @@
+{
+  "name": "<%= compName %>",
+  "author": "<%= authorName %> <<%= authorEmail %>>",
+  "version": "<%= compVersion %>",
+  "description": "<%= compDescription %>",
+  "main": "src/<%= compName %>.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "karma start",
+    "test:watch": "karma start --no-single-run",
+    "docs": "npm run sassdocs && npm run jsdocs && npm run esdocs",
+    "esdocs": "esdoc -c .esdoc.json",
+    "sassdocs": "sassdoc src/scss",
+    "jsdocs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
+    "install-deps": "npm i -g gulp karma-cli && npm i && gulp install-deps"
+  },
+  "browserify": {
+    "transform": [
+      ["babelify"]
+    ]
+  },
+  "devDependencies": <%= npmDevDependencies %>,
+  "dependencies": <%= npmDependencies %>
+}

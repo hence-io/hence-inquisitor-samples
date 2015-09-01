@@ -1,0 +1,24 @@
+{
+  "name": "<%= compName %>",
+  "version": "<%=compVersion %>",
+  "authors": [
+    "<%= authorName %> <<%= authorEmail %>>"
+  ],
+  "description": "<%= compDescription %>",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer"
+  ],
+  "main": "dist/<%= compName %>.html",
+  "homepage": "https://github.com/<%= githubUser %>/<%= compName %>/",
+  "ignore": [
+    "/.*",
+    "/comp/gulp/",
+    "/comp/test/"
+  ],
+  "dependencies": <%= bowerDependencies %>,
+  "devDependencies": {
+    "web-component-tester": "*"
+  }
+}
