@@ -1,8 +1,8 @@
-# Inquisitor Code Samples
+# [Inquisitor](https://github.com/hence-io/hence-inquisitor) Code Samples
 
 >
 
-## About
+## About Inquisitor
 
 A streamlined scaffolding installer utility, incorporating inquirer and glup-utils at it's core.
 
